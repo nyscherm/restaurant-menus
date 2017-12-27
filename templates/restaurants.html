@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu App</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}"></link>
+</head>
+	<h1>Restaurants</h1>
+	<div class="addRestaurant">
+		<h3><a href="{{url_for('addRestaurant')}}">Add a new restaurant</a></h3>
+	</div>
+	
+	{% for r in restaurants %}
+		<div class="item">
+			<a href="{{url_for('showMenu', restaurant_id = r.id)}}"><h2>{{r.name}}</h2></a>
+			<button><a href="{{url_for('editRestaurant', restaurant_id = r.id)}}">edit</a></button>
+			<button><a href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">delete</a></button>
+		</div>
+	{% endfor %}
+<body>
+
+</body>
+</html>

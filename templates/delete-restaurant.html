@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Delete Restaurant</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}"></link>
+</head>
+	<h1>{{restaurant.name}}</h1>
+	<form>
+		<p>Are you sure you want to delete this restaurant?</p>
+		<input type="submit" name="Delete">
+		<button><a href="{{url_for('showRestaurants')}}">Cancel</a></button>
+	</form>
+<body>
+
+</body>
+</html>
