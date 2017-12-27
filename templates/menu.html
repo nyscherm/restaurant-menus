@@ -7,7 +7,10 @@
 
 <body>
 	<h1>{{restaurant.name}}</h1>
-	<div class="addItem"><a href="{{url_for('addMenuItem', restaurant_id = restaurant.id)}}">Add a menu item</a></div>
+	<div class="addItem">
+		<a href="{{url_for('addMenuItem', restaurant_id = restaurant.id)}}">Add a menu item</a>
+		<a href="{{url_for('showRestaurants')}}">Return to all restaurants</a>
+	</div>
 	{% if menu != [] %}
 		<h3>Appetizers</h3>
 		{% for item in menu %}

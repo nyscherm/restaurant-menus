@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}"></link>
 </head>
 	<h1>Add Restaurant</h1>
-	<form>
+	<form action="{{url_for('addRestaurant')}}" method="post">
 		<p>Name: </p>
 		<input type="text" name="name" size="35" placeholder="new restaurant name">
 		<input type="submit" name="Create">

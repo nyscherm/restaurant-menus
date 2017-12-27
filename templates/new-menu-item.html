@@ -8,7 +8,7 @@
 <body>
 	<h1>{{restaurant.name}}</h1>
 	<h3>Add menu item</h3>
-	<form>
+	<form action="{{url_for('addMenuItem', restaurant_id = restaurant.id)}}" method="post">
 		<p>Name: </p>
 		<input type="text" name="name" size="35">
 		<p>Description: </p>
@@ -16,7 +16,7 @@
 		<p>Price: </p>
 		<input type="text" name="price" size="8">
 		<p>Course: </p>
-		<select type="dropdown">
+		<select type="dropdown" name="course">
 			<option>Appetizer</option>
 			<option>Entree</option>
 			<option>Dessert</option>
