@@ -11,6 +11,17 @@
 		<a href="{{url_for('addMenuItem', restaurant_id = restaurant.id)}}">Add a menu item</a>
 		<a href="{{url_for('showRestaurants')}}">Return to all restaurants</a>
 	</div>
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+					<li> {{message}} </li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+
 	{% if menu != [] %}
 		<h3>Appetizers</h3>
 		{% for item in menu %}

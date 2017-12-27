@@ -24,6 +24,14 @@ form p {
 	padding-top: 10px;
 }
 
+.messages {
+	list-style: none;
+	padding: 20px 10px;
+	margin: 10px 0;
+	background-color: #a7350c;
+	color: #481705;
+}
+
 /* Home */
 .addRestaurant, .addItem {
 	position: fixed;

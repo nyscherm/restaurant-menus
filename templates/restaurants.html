@@ -8,6 +8,16 @@
 	<div class="addRestaurant">
 		<h3><a href="{{url_for('addRestaurant')}}">Add a new restaurant</a></h3>
 	</div>
+
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			<ul class="messages">
+				{% for message in messages %}
+					<li> {{message}} </li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
 	
 	{% for r in restaurants %}
 		<div class="item">
