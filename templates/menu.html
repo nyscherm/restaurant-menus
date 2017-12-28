@@ -3,81 +3,89 @@
 <head>
 	<title>Restaurant Menu</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}"></link>
+	<link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro" rel="stylesheet">
 </head>
 
 <body>
-	<h1>{{restaurant.name}}</h1>
-	<div class="addItem">
-		<a href="{{url_for('addMenuItem', restaurant_id = restaurant.id)}}">Add a menu item</a>
-		<a href="{{url_for('showRestaurants')}}">Return to all restaurants</a>
-	</div>
+	<div class="content">
+		<div class="header">
+			<div><h1>{{restaurant.name}}</h1></div>
+			<div>
+				<h3><a href="{{url_for('showRestaurants')}}">Return to all restaurants</a></h3>
+			</div>
+		</div>
+		
 
-	{% with messages = get_flashed_messages() %}
-		{% if messages %}
-			<ul class="messages">
-				{% for message in messages %}
-					<li> {{message}} </li>
-				{% endfor %}
-			</ul>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+						<li> {{message}} </li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+		<div class="addItem">
+			<a href="{{url_for('addMenuItem', restaurant_id = restaurant.id)}}">+ Add a menu item</a>
+		</div>
+
+		{% if menu != [] %}
+			<h2>Appetizers</h2>
+			{% for item in menu %}
+				{% if item.course == "Appetizer" %}
+					<div class="item">
+						<p class="name">{{item.name}}</p>
+						<p>{{item.description}}</p>
+						<p>{{item.price}}</p>
+						<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
+						<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			<h2>Entrees</h2>
+			{% for item in menu %}
+				{% if item.course == "Entree" %}
+					<div class="item">
+						<p class="name">{{item.name}}</p>
+						<p>{{item.description}}</p>
+						<p>{{item.price}}</p>
+						<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
+						<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			<h2>Dessert</h2>
+			{% for item in menu %}
+				{% if item.course == "Dessert" %}
+					<div class="item">
+						<p class="name">{{item.name}}</p>
+						<p>{{item.description}}</p>
+						<p>{{item.price}}</p>
+						<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
+						<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+			<h2>Beverages</h2>
+			{% for item in menu %}
+				{% if item.course == "Beverage" %}
+					<div class="item">
+						<p class="name">{{item.name}}</p>
+						<p>{{item.description}}</p>
+						<p>{{item.price}}</p>
+						<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
+						<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
+					</div>
+				{% endif %}
+			{% endfor %}
+
+		{% else %}
+			<h3>No items to show.</h3>
 		{% endif %}
-	{% endwith %}
-
-	{% if menu != [] %}
-		<h3>Appetizers</h3>
-		{% for item in menu %}
-			{% if item.course == "Appetizer" %}
-				<div class="item">
-					<p>{{item.name}}</p>
-					<p>{{item.description}}</p>
-					<p>{{item.price}}</p>
-					<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
-					<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
-				</div>
-			{% endif %}
-		{% endfor %}
-
-		<h3>Entrees</h3>
-		{% for item in menu %}
-			{% if item.course == "Entree" %}
-				<div class="item">
-					<p>{{item.name}}</p>
-					<p>{{item.description}}</p>
-					<p>{{item.price}}</p>
-					<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
-					<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
-				</div>
-			{% endif %}
-		{% endfor %}
-
-		<h3>Dessert</h3>
-		{% for item in menu %}
-			{% if item.course == "Dessert" %}
-				<div class="item">
-					<p>{{item.name}}</p>
-					<p>{{item.description}}</p>
-					<p>{{item.price}}</p>
-					<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
-					<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
-				</div>
-			{% endif %}
-		{% endfor %}
-
-		<h3>Beverages</h3>
-		{% for item in menu %}
-			{% if item.course == "Beverage" %}
-				<div class="item">
-					<p>{{item.name}}</p>
-					<p>{{item.description}}</p>
-					<p>{{item.price}}</p>
-					<button><a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Edit</a></button>
-					<button><a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}">Delete</a></button>
-				</div>
-			{% endif %}
-		{% endfor %}
-
-	{% else %}
-		<h3>No items to show.</h3>
-	{% endif %}
-
+	</div>
 </body>
 </html>

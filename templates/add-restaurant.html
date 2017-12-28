@@ -3,17 +3,20 @@
 <head>
 	<title>Add Restaurant</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}"></link>
+	<link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro" rel="stylesheet">
 </head>
-	<h1>Add Restaurant</h1>
-	<form action="{{url_for('addRestaurant')}}" method="post">
-		<p>Name: </p>
-		<input type="text" name="name" size="35" placeholder="new restaurant name">
-		<input type="submit" name="Create">
-	</form>
-	<p>
-		<button><a href="{{url_for('showRestaurants')}}">Cancel</a></button>
-	</p>
-<body>
 
+<body>
+	<div class="content">
+		<h1>Add Restaurant</h1>
+		<form action="{{url_for('addRestaurant')}}" method="post">
+			<p>Name: </p>
+			<input type="text" name="name" size="35" placeholder="new restaurant name">
+			<p>
+				<button><a href="{{url_for('showRestaurants')}}">Cancel</a></button>
+				<input type="submit" name="Create">
+			</p>
+		</form>
+	</div>
 </body>
 </html>

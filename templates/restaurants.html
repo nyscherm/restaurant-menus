@@ -3,30 +3,36 @@
 <head>
 	<title>Menu App</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'styles.css') }}"></link>
+	<link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro" rel="stylesheet">
 </head>
-	<h1>Restaurants</h1>
-	<div class="addRestaurant">
-		<h3><a href="{{url_for('addRestaurant')}}">Add a new restaurant</a></h3>
-	</div>
 
-	{% with messages = get_flashed_messages() %}
-		{% if messages %}
-			<ul class="messages">
-				{% for message in messages %}
-					<li> {{message}} </li>
-				{% endfor %}
-			</ul>
-		{% endif %}
-	{% endwith %}
-	
-	{% for r in restaurants %}
-		<div class="item">
-			<a href="{{url_for('showMenu', restaurant_id = r.id)}}"><h2>{{r.name}}</h2></a>
-			<button><a href="{{url_for('editRestaurant', restaurant_id = r.id)}}">edit</a></button>
-			<button><a href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">delete</a></button>
-		</div>
-	{% endfor %}
 <body>
+	<div class="content">
+		<div class="header">
+			<div><h1>Restaurants</h1></div>
+			<div>
+				<h3><a href="{{url_for('addRestaurant')}}">+ Add a new restaurant</a></h3>
+			</div>
+		</div>
 
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+						<li> {{message}} </li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+		
+		{% for r in restaurants %}
+			<div class="item">
+				<a href="{{url_for('showMenu', restaurant_id = r.id)}}"><h2>{{r.name}}</h2></a>
+				<button><a href="{{url_for('editRestaurant', restaurant_id = r.id)}}">edit</a></button>
+				<button><a href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">delete</a></button>
+			</div>
+		{% endfor %}
+	</div>
+	
 </body>
 </html>
